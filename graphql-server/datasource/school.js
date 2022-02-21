@@ -17,5 +17,4 @@ class SchoolAPI extends RESTDataSource{
     }
 
 }
-
 module.exports = SchoolAPI;

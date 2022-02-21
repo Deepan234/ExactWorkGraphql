@@ -4,8 +4,16 @@ import { FETCH_USER } from '../GraphQl/Query'
 import {Container} from '@material-ui/core'
 import { useState } from 'react'
 import { useLayoutEffect } from 'react'
+import {useDispatch} from 'react-redux'
+import {getAllSchool} from '../Action/SchoolAction'
+import {useSelector} from 'react-redux'
 
 export default function UserListing() {
+
+
+const dispatch = useDispatch();
+
+const sch = useSelector((state)=> state.AllSchools.school);
 
 const{data,loading} = useQuery(FETCH_USER);
 
@@ -16,6 +24,7 @@ const[school,setSchool] = useState(data);
 useLayoutEffect(() => {
     if(data){
     setSchool(data);
+    dispatch(getAllSchool(data));
     console.log(school);
     }
   }, [data,school])
